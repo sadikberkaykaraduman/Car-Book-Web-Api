@@ -20,22 +20,17 @@ namespace CarBook.WebUI.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            var token = User.Claims.FirstOrDefault(x => x.Type == "carbooktoken")?.Value;
-            if (token != null)
-            {
-                var client = _httpClientFactory.CreateClient();
-                var responseMessage = await client.GetAsync("https://localhost:44365/api/Locations");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var jsonData = await responseMessage.Content.ReadAsStringAsync();
-                var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
-                List<SelectListItem> locationValues = (from x in values
-                                                       select new SelectListItem
-                                                       {
-                                                           Text = x.LocationName,
-                                                           Value = x.LocationId.ToString()
-                                                       }).ToList();
-                ViewBag.LocationValues = locationValues;
-            }
+            var client = _httpClientFactory.CreateClient();
+            var responseMessage = await client.GetAsync("https://localhost:44365/api/Locations");
+            var jsonData = await responseMessage.Content.ReadAsStringAsync();
+            var values = JsonConvert.DeserializeObject<List<ResultLocationDto>>(jsonData);
+            List<SelectListItem> locationValues = (from x in values
+                                                   select new SelectListItem
+                                                   {
+                                                       Text = x.LocationName,
+                                                       Value = x.LocationId.ToString()
+                                                   }).ToList();
+            ViewBag.LocationValues = locationValues;
             return View();
         }
 
