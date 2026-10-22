@@ -32,7 +32,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/CarFeatures/GetCarFeatureByCarId/{id}");
+                var responseMessage = await client.GetAsync($"https://localhost:44365/api/CarFeatures/GetCarFeatureByCarId/{id}");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -52,11 +52,11 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 if (item.CarFeatureAvaileble)
                 {
-                    await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/CarFeatures/ChangeCarFeatureAvilebleToTrue?id=" + item.CarFeatureId);
+                    await client.GetAsync("https://localhost:44365/api/CarFeatures/ChangeCarFeatureAvilebleToTrue?id=" + item.CarFeatureId);
                 }
                 else
                 {
-                    await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/CarFeatures/ChangeCarFeatureAvilebleToFalse?id=" + item.CarFeatureId);
+                    await client.GetAsync("https://localhost:44365/api/CarFeatures/ChangeCarFeatureAvilebleToFalse?id=" + item.CarFeatureId);
                 }
             }
             return RedirectToAction("Index", "AdminCar", new { area = "Admin" });

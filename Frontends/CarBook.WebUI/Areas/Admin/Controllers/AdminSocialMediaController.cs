@@ -27,7 +27,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/SocialMedias");
+                var responseMessage = await client.GetAsync("https://localhost:44365/api/SocialMedias");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -51,7 +51,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createSocialMediaDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/SocialMedias", content);
+            var responseMessage = await client.PostAsync("https://localhost:44365/api/SocialMedias", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminSocialMedia", new { area = "Admin" });
@@ -64,7 +64,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/SocialMedias/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44365/api/SocialMedias/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -80,7 +80,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateSocialMediaDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/SocialMedias/", content);
+            var responseMessage = await client.PutAsync($"https://localhost:44365/api/SocialMedias/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminSocialMedia", new { area = "Admin" });
@@ -92,7 +92,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteSocialMedia(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/SocialMedias/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44365/api/SocialMedias/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminSocialMedia", new { area = "Admin" });

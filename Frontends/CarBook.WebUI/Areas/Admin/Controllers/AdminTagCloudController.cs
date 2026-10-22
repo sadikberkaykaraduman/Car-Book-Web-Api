@@ -31,7 +31,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds");
+                var responseMessage = await client.GetAsync("https://localhost:44365/api/TagClouds");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -47,7 +47,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateTagCloud()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs");
+            var responseMessage = await client.GetAsync("https://localhost:44365/api/Blogs");
             var JsonData = await responseMessage.Content.ReadAsStringAsync();
             var valuues = JsonConvert.DeserializeObject<List<ResultBlogDto>>(JsonData);
             List<SelectListItem> blogValues = (from x in valuues
@@ -67,7 +67,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createTagCloudDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds", content);
+            var responseMessage = await client.PostAsync("https://localhost:44365/api/TagClouds", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminTagCloud", new { area = "Admin" });
@@ -81,7 +81,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var responseMessage1 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs");
+            var responseMessage1 = await client.GetAsync("https://localhost:44365/api/Blogs");
             var JsonData1 = await responseMessage1.Content.ReadAsStringAsync();
             var values1 = JsonConvert.DeserializeObject<List<ResultBlogDto>>(JsonData1);
             List<SelectListItem> blogValues = (from x in values1
@@ -92,7 +92,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
                                                }).ToList();
             ViewBag.BlogValues = blogValues;
 
-            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44365/api/TagClouds/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -110,7 +110,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateTagCloudDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds/", content);
+            var responseMessage = await client.PutAsync($"https://localhost:44365/api/TagClouds/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminTagCloud", new { area = "Admin" });
@@ -122,7 +122,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteTagCloud(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44365/api/TagClouds/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminTagCloud", new { area = "Admin" });

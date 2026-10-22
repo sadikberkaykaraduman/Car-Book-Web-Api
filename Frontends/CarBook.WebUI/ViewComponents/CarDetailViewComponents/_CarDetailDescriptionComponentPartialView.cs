@@ -16,7 +16,7 @@ namespace CarBook.WebUI.ViewComponents.CarDetailViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/CarDescription/GetCarDescriptionByCarId/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44365/api/CarDescription/GetCarDescriptionByCarId/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

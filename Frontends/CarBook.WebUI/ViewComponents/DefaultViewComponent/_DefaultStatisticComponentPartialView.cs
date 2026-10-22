@@ -17,7 +17,7 @@ namespace CarBook.WebUI.ViewComponents.BlogViewComponents
         {
             var client = _httpClientFactory.CreateClient();
 
-            var responseMessage1 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Statistics/GetCarCount");
+            var responseMessage1 = await client.GetAsync("https://localhost:44365/api/Statistics/GetCarCount");
             if (responseMessage1.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage1.Content.ReadAsStringAsync();
@@ -25,7 +25,7 @@ namespace CarBook.WebUI.ViewComponents.BlogViewComponents
                 ViewBag.CarCount = values.CarCount;
             }
 
-            var responseMessage2 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Statistics/GetLocationCount");
+            var responseMessage2 = await client.GetAsync("https://localhost:44365/api/Statistics/GetLocationCount");
             if (responseMessage2.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage2.Content.ReadAsStringAsync();
@@ -33,7 +33,7 @@ namespace CarBook.WebUI.ViewComponents.BlogViewComponents
                 ViewBag.LocationCount = values.LocationCount;
             }
 
-            var responseMessage3 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Statistics/GetBrandCount");
+            var responseMessage3 = await client.GetAsync("https://localhost:44365/api/Statistics/GetBrandCount");
             if (responseMessage3.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage3.Content.ReadAsStringAsync();
@@ -41,7 +41,7 @@ namespace CarBook.WebUI.ViewComponents.BlogViewComponents
                 ViewBag.BrandCount = values.BrandCount;
             }
 
-            var responseMessage4 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Statistics/GetGasolineCarCount");
+            var responseMessage4 = await client.GetAsync("https://localhost:44365/api/Statistics/GetGasolineCarCount");
             if (responseMessage4.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage4.Content.ReadAsStringAsync();

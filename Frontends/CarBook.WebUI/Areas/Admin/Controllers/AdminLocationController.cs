@@ -27,7 +27,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Locations");
+                var responseMessage = await client.GetAsync("https://localhost:44365/api/Locations");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -51,7 +51,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createLocationDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Locations", content);
+            var responseMessage = await client.PostAsync("https://localhost:44365/api/Locations", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminLocation", new { area = "Admin" });
@@ -64,7 +64,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> UpdateLocation(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Locations/{id}");
+            var responseMessage = await client.GetAsync($"https://localhost:44365/api/Locations/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -81,7 +81,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateLocationDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Locations/", content);
+            var responseMessage = await client.PutAsync($"https://localhost:44365/api/Locations/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminLocation", new { area = "Admin" });
@@ -94,7 +94,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteLocation(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Locations/{id}");
+            var responseMessage = await client.DeleteAsync($"https://localhost:44365/api/Locations/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminLocation", new { area = "Admin" });

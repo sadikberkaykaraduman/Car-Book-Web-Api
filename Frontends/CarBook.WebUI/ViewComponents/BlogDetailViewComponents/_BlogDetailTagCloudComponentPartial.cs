@@ -17,7 +17,7 @@ namespace CarBook.WebUI.ViewComponents.BlogDetailViewComponents
         public async Task<IViewComponentResult> InvokeAsync()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/TagClouds");
+            var responseMessage = await client.GetAsync("https://localhost:44365/api/TagClouds");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

@@ -20,7 +20,7 @@ namespace CarBook.WebUI.ViewComponents.BlogDetailViewComponents
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCommentDto); 
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Comments", content);
+            var responseMessage = await client.PostAsync("https://localhost:44365/api/Comments", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return View();
