@@ -22,7 +22,7 @@ namespace CarBook.WebUI.Controllers
             id = int.Parse(locationId.ToString());
 
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync($"https://localhost:44365/api/RentACars/FilteredCarlist?LocationId={id}");
+            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/RentACars/FilteredCarlist?LocationId={id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();

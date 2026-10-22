@@ -26,7 +26,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://localhost:44365/api/Blogs/BlogWithAuthor");
+                var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs/BlogWithAuthor");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -42,7 +42,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //public async Task<IActionResult> CreateBlog()
         //{
         //    var client = _httpClientFactory.CreateClient();
-        //    var responseMessage1 = await client.GetAsync("https://localhost:44365/api/Authors");
+        //    var responseMessage1 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Authors");
         //    var JsonData1 = await responseMessage1.Content.ReadAsStringAsync();
         //    var values1 = JsonConvert.DeserializeObject<List<ResultAuthorDto>>(JsonData1);
         //    List<SelectListItem> authorValues = (from x in values1
@@ -53,7 +53,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //                                         }).ToList();
         //    ViewBag.AuthorValues = authorValues;
 
-        //    var responseMessage2 = await client.GetAsync("https://localhost:44365/api/Catergories");
+        //    var responseMessage2 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Catergories");
         //    var JsonData2 = await responseMessage2.Content.ReadAsStringAsync();
         //    var values2 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(JsonData2);
         //    List<SelectListItem> categoryValues = (from x in values2
@@ -73,7 +73,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //    var client = _httpClientFactory.CreateClient();
         //    var jsonData = JsonConvert.SerializeObject(createBlogDto);
         //    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        //    var responseMessage = await client.PostAsync("https://localhost:44365/api/Blogs", content);
+        //    var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs", content);
         //    if (responseMessage.IsSuccessStatusCode)
         //    {
         //        return RedirectToAction("Index", "AdminBlog", new { area = "Admin" });
@@ -86,7 +86,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //public async Task<IActionResult> UpdateBlog(int id)
         //{
         //    var client = _httpClientFactory.CreateClient();
-        //    var responseMessage1 = await client.GetAsync("https://localhost:44365/api/Authors");
+        //    var responseMessage1 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Authors");
         //    var JsonData1 = await responseMessage1.Content.ReadAsStringAsync();
         //    var values1 = JsonConvert.DeserializeObject<List<ResultAuthorDto>>(JsonData1);
         //    List<SelectListItem> authorValues = (from x in values1
@@ -97,7 +97,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //                                         }).ToList();
         //    ViewBag.AuthorValues = authorValues;
 
-        //    var responseMessage2 = await client.GetAsync("https://localhost:44365/api/Catergories");
+        //    var responseMessage2 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Catergories");
         //    var JsonData2 = await responseMessage2.Content.ReadAsStringAsync();
         //    var values2 = JsonConvert.DeserializeObject<List<ResultCategoryDto>>(JsonData2);
         //    List<SelectListItem> categoryValues = (from x in values2
@@ -108,7 +108,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //                                           }).ToList();
         //    ViewBag.CategoryValues = categoryValues;
 
-        //    var responseMessage = await client.GetAsync($"https://localhost:44365/api/Blogs/{id}");
+        //    var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs/{id}");
         //    if (responseMessage.IsSuccessStatusCode)
         //    {
         //        var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -126,7 +126,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         //    var client = _httpClientFactory.CreateClient();
         //    var jsonData = JsonConvert.SerializeObject(updateBlogDto);
         //    StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-        //    var responseMessage = await client.PutAsync($"https://localhost:44365/api/Blogs/", content);
+        //    var responseMessage = await client.PutAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs/", content);
         //    if (responseMessage.IsSuccessStatusCode)
         //    {
         //        return RedirectToAction("Index", "AdminBlog", new { area = "Admin" });
@@ -138,7 +138,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteBlog(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44365/api/Blogs/{id}");
+            var responseMessage = await client.DeleteAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Blogs/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminBlog", new { area = "Admin" });

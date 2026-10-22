@@ -28,7 +28,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             {
                 var client = _httpClientFactory.CreateClient();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-                var responseMessage = await client.GetAsync("https://localhost:44365/api/Cars/CarListWithBrand");
+                var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Cars/CarListWithBrand");
                 if (responseMessage.IsSuccessStatusCode)
                 {
                     var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -44,7 +44,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> CreateCar()
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:44365/api/Brands");
+            var responseMessage = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Brands");
             var JsonData = await responseMessage.Content.ReadAsStringAsync();
             var valuues = JsonConvert.DeserializeObject<List<ResultBrandDto>>(JsonData);
             List<SelectListItem> brandValues = (from x in valuues
@@ -64,7 +64,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(createCarDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PostAsync("https://localhost:44365/api/Cars", content);
+            var responseMessage = await client.PostAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Cars", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminCar", new { area = "Admin" });
@@ -76,7 +76,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteCar(int id)
         {
             var client = _httpClientFactory.CreateClient();
-            var responseMessage = await client.DeleteAsync($"https://localhost:44365/api/Cars/{id}");
+            var responseMessage = await client.DeleteAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Cars/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminCar", new { area = "Admin" });
@@ -90,7 +90,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
         {
             var client = _httpClientFactory.CreateClient();
 
-            var responseMessage2 = await client.GetAsync("https://localhost:44365/api/Brands");
+            var responseMessage2 = await client.GetAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Brands");
             var JsonData = await responseMessage2.Content.ReadAsStringAsync();
             var valuues = JsonConvert.DeserializeObject<List<ResultBrandDto>>(JsonData);
             List<SelectListItem> brandValues = (from x in valuues
@@ -101,7 +101,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
                                                 }).ToList();
             ViewBag.BrandValues = brandValues;
 
-            var responseMessage = await client.GetAsync($"https://localhost:44365/api/Cars/{id}");
+            var responseMessage = await client.GetAsync($"https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Cars/{id}");
             if (responseMessage.IsSuccessStatusCode)
             {
                 var jsonData = await responseMessage.Content.ReadAsStringAsync();
@@ -119,7 +119,7 @@ namespace CarBook.WebUI.Areas.Admin.Controllers
             var client = _httpClientFactory.CreateClient();
             var jsonData = JsonConvert.SerializeObject(updateCarDto);
             StringContent content = new StringContent(jsonData, Encoding.UTF8, "application/json");
-            var responseMessage = await client.PutAsync("https://localhost:44365/api/Cars/", content);
+            var responseMessage = await client.PutAsync("https://carbookparanova-aad2bfcmesgkfwaq.germanywestcentral-01.azurewebsites.net/api/Cars/", content);
             if (responseMessage.IsSuccessStatusCode)
             {
                 return RedirectToAction("Index", "AdminCar", new { area = "Admin" });

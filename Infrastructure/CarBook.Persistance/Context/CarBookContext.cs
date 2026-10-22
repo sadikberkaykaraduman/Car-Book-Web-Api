@@ -10,24 +10,14 @@ namespace CarBook.Persistance.Context
 {
     public class CarBookContext : DbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=berkay; initial Catalog=CarBook; integrated Security=True; TrustServerCertificate=True;");
-        }
-
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         //{
-        //    optionsBuilder.UseSqlServer(
-        //        "Server=tcp:carbookdb-1.database.windows.net,1433;" +
-        //        "Initial Catalog=carbookdb;" +
-        //        "Persist Security Info=False;" +
-        //        "User ID=carbookdb;" +
-        //        "Password=Carbook1500?;" +
-        //        "MultipleActiveResultSets=False;" +
-        //        "Encrypt=True;" +
-        //        "TrustServerCertificate=False;" +
-        //        "Connection Timeout=30;");
+        //    optionsBuilder.UseSqlServer("Server=berkay; initial Catalog=CarBook; integrated Security=True; TrustServerCertificate=True;");
         //}
+
+        public CarBookContext(DbContextOptions<CarBookContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
